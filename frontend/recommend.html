@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Recommendation</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Weather source badge — inline style so it works without touching style.css */
+        #weatherSourceBadge {
+            display: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">🌾 Crop Guide</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="recommend.html">Crop Recommendation</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </header>
+
+    <section class="recommend-bg">
+        <section class="recommend-section">
+            <div id="formHeader">
+                <h1>Crop Recommendation</h1>
+                <p>Fill the details below to get the best crop suggestion</p>
+            </div>
+            <div id="formContainer">
+                <form class="recommend-form" id="recommendForm" action="#">
+
+                    <div class="form-group">
+                        <label>Location (District)</label>
+                        <div class="custom-select" id="locationSelect">
+                            <div class="select-selected placeholder">Select district</div>
+                            <ul class="select-options">
+                                <li>Coimbatore</li>
+                                <li>Cuddalore</li>
+                                <li>Dharmapuri</li>
+                                <li>Dindigul</li>
+                                <li>Erode</li>
+                                <li>Kanniyakumari</li>
+                                <li>Karur</li>
+                                <li>Krishnagiri</li>
+                                <li>Madurai</li>
+                                <li>Nagapattinam</li>
+                                <li>Namakkal</li>
+                                <li>Nilgiris</li>
+                                <li>Ramanathapuram</li>
+                                <li>Salem</li>
+                                <li>Sivagangai</li>
+                                <li>Thanjavur</li>
+                                <li>Theni</li>
+                                <li>Tiruchirappalli</li>
+                                <li>Tirunelveli</li>
+                                <li>Tiruppur</li>
+                                <li>Tiruvallur</li>
+                                <li>Tiruvarur</li>
+                                <li>Viluppuram</li>
+                                <li>Virudhunagar</li>
+                            </ul>
+                        </div>
+                        <div class="error" id="locationError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Soil Color</label>
+                        <div class="custom-select" id="soilColorSelect">
+                            <div class="select-selected placeholder">eg: Select soil color</div>
+                            <ul class="select-options">
+                                <li data-value="Dark">Dark</li>
+                                <li data-value="Red">Red</li>
+                                <li data-value="Black">Black</li>
+                                <li data-value="Brown">Brown</li>
+                            </ul>
+                        </div>
+                        <div class="error" id="soilColorError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Soil Texture</label>
+                        <div class="custom-select" id="soilTypeSelect">
+                            <div class="select-selected placeholder">eg: Select soil texture</div>
+                            <ul class="select-options">
+                                <li>Clay</li>
+                                <li>Sandy</li>
+                                <li>Loamy</li>
+                            </ul>
+                        </div>
+                        <div class="error" id="soilTypeError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Water Retention</label>
+                        <div class="custom-select" id="waterRetentionSelect">
+                            <div class="select-selected placeholder">eg: Select water retention</div>
+                            <ul class="select-options">
+                                <li>High</li>
+                                <li>Medium</li>
+                                <li>Low</li>
+                            </ul>
+                        </div>
+                        <div class="error" id="waterRetentionError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Drainage</label>
+                        <div class="custom-select" id="drainageSelect">
+                            <div class="select-selected placeholder">eg: Select drainage</div>
+                            <ul class="select-options">
+                                <li>Good</li>
+                                <li>Moderate</li>
+                                <li>Poor</li>
+                            </ul>
+                        </div>
+                        <div class="error" id="drainageError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Land Area (acres)</label>
+                        <input type="number" id="landArea" placeholder="eg: 2">
+                        <small class="error-text" id="landError"></small>
+                    </div>
+
+                    <div class="form-group cost-group">
+                        <label>Budget for Cultivation</label>
+                        <div class="cost-input">
+                            <input type="number" id="costInput" placeholder="eg: 55000">
+                            <span>INR</span>
+                        </div>
+                        <small class="error-text" id="costError"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Planting Month</label>
+                        <div class="custom-select" id="plantingMonthSelect">
+                            <div class="select-selected placeholder">eg: Select planting month</div>
+                            <ul class="select-options">
+                                <li>January</li>
+                                <li>February</li>
+                                <li>March</li>
+                                <li>April</li>
+                                <li>May</li>
+                                <li>June</li>
+                                <li>July</li>
+                                <li>August</li>
+                                <li>September</li>
+                                <li>October</li>
+                                <li>November</li>
+                                <li>December</li>
+                            </ul>
+                        </div>
+                        <div class="error" id="plantingMonthError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Harvest Year</label>
+                        <div class="custom-select" id="harvestYearSelect">
+                            <div class="select-selected placeholder">eg: Select harvest year</div>
+                            <ul class="select-options" id="harvestYearOptions"></ul>
+                        </div>
+                        <div class="error" id="harvestYearError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Harvest Month</label>
+                        <div class="custom-select" id="harvestMonthSelect">
+                            <div class="select-selected placeholder" id="harvestMonthSelected">eg: Select harvesting
+                                month</div>
+                            <ul class="select-options" id="harvestMonthOptions"></ul>
+                        </div>
+                        <div class="error" id="harvestMonthError"></div>
+                    </div>
+
+                    <button type="submit">Get Recommendation</button>
+                </form>
+            </div>
+
+            <!-- RESULT SECTION -->
+            <div id="resultContainer" style="display: none;">
+                <div class="result-section">
+                    <h2>Crop Recommendation Result</h2>
+
+                    <!-- Weather source badge — shows live forecast vs ML model -->
+                    <div style="margin-bottom: 8px;">
+                        <span id="weatherSourceBadge"></span>
+                    </div>
+
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <label>Predicted Temperature (Harvest Month)</label>
+                            <p id="temperatureResult">--</p>
+                        </div>
+                        <div class="result-item">
+                            <label>Predicted Rainfall (Harvest Month)</label>
+                            <p id="rainfallResult">--</p>
+                        </div>
+                        <div class="result-item">
+                            <label>Predicted Humidity (Harvest Month)</label>
+                            <p id="humidityResult">--</p>
+                        </div>
+                        <div class="result-item full-width">
+                            <label>Recommended Crops</label>
+                            <div id="cropList" class="crop-list-box"></div>
+                        </div>
+                        <div class="full-width button-center">
+                            <button type="button" id="selectCropBtn">Select Crop</button>
+                        </div>
+                        <div id="predictionSection" class="prediction-grid full-width" style="display:none;">
+                            <div class="result-item">
+                                <label>Selected Crop</label>
+                                <p id="selectedCropResult">--</p>
+                            </div>
+                            <div class="result-item">
+                                <label>Fertilizer Recommendation</label>
+                                <p id="fertilizerResult">--</p>
+                            </div>
+                            <div class="result-item">
+                                <label>Irrigation System Recommendation</label>
+                                <p id="irrigationResult">--</p>
+                            </div>
+                            <div class="result-item full-width" id="suggestionBox" style="display:none;">
+                                <label>Suggestion</label>
+                                <p id="suggestionText">--</p>
+                            </div>
+                            <div class="result-item">
+                                <label>Predicted Yield</label>
+                                <p id="yieldResult">--</p>
+                            </div>
+                            <div class="result-item">
+                                <label>Market Price</label>
+                                <p id="marketPriceResult">--</p>
+                            </div>
+                            <div class="result-item">
+                                <label>Estimated Profit</label>
+                                <p id="profitResult">--</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="backButton" type="button">Back</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
