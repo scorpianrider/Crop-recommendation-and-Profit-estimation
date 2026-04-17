@@ -1,5 +1,7 @@
 backend/models/rainfall_api_model.pkl
 datasets/Weather_dataset.csv
+__pycache__/
+*.pyc
 .env
 datasets/
 backend/models/
